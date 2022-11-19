@@ -33,7 +33,9 @@ setopt prompt_subst
 PROMPT='%K{blue}%* [%n] %(5~,%-1~/.../%2~,%~) (`rprompt-git-current-branch`)%k '
 
 # ALIAS
+alias w="cd home/workspace"
 alias h="history 100"
+
 # Git
 alias gs="git status"
 alias ga="git add ."
@@ -42,5 +44,11 @@ alias gcm="git commit -v"
 alias gc="git checkout"
 alias gp="git push origin HEAD"
 alias gpu="git pull oriin"
+alias gstu="git stash -u"
+alias gstl="git stash list"
+alias gsta="git stash apply"
+alias gstd="git stash drop"
 
-
+# Ruby Ruby
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(~/.rbenv/bin/rbenv init -)"
