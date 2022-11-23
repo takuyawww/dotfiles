@@ -39,6 +39,7 @@ alias h="history 100"
 # Git
 alias gs="git status"
 alias ga="git add ."
+alias gb="git branch"
 alias gd="git diff"
 alias gcm="git commit -v"
 alias gc="git checkout"
