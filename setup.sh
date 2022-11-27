@@ -1,11 +1,11 @@
 #!/bin/sh
 
-apt upgrade
+apt update
 
 echo "====================="
 echo "zsh"
 echo "====================="
-apt install zsh && chsh -s /bin/zsh root && chsh && su - root
+apt install zsh sudo && chsh -s /bin/zsh root && chsh && su - root
 echo $SHELL
 
 echo "====================="
@@ -21,7 +21,7 @@ ssh-keygen -t ed25519 -C "wakataku.11010809@gmail.com"
 ls -al ~/.ssh
 eval "$(ssh-agent -s)"
 cat ~/.ssh/id_ed25519.pub
-echo "please setting GitHub GUI (to https://github.com/settings/keys"
+echo "please setting GitHub GUI (to https://github.com/settings/keys)"
 read Wait
 ssh -T git@github.com
 
@@ -84,4 +84,4 @@ node -v
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 export PATH="$PATH:/opt/yarn-[version]/bin"
-
+apt update && sudo apt install yarn
