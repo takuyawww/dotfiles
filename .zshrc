@@ -34,7 +34,7 @@ PROMPT='%K{blue}%* [%n] %(5~,%-1~/.../%2~,%~) (`rprompt-git-current-branch`)%k '
 
 # ALIAS
 alias w="cd && cd ../home/workspace"
-alias h="history 100"
+alias h="history"
 alias c="clear"
 
 # Git
