@@ -33,6 +33,8 @@ git clone git@github.com:takuyawww/dotfiles.git
 ./dotfiles/linked.sh
 git clone git@github.com:takuyawww/zonotech.git
 apt install vim
+# https://uchiharu-memo.hatenablog.com/entry/2017/05/30/011316
+cd && curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh && chmod u+x install.sh && ./install.sh && rm install.sh
 
 echo "====================="
 echo "ruby"
@@ -76,8 +78,9 @@ export NVM_DIR="$HOME/.nvm"
 source ~/.zshrc
 source ~/.vimrc
 
-nvm list
 nvm install v18.12.1
+nvm install v16.18.1
+nvm use v16.18.1
 node -v
 
 # https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable
