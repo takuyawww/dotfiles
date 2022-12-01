@@ -33,8 +33,9 @@ setopt prompt_subst
 PROMPT='%K{blue}%* [%n] %(5~,%-1~/.../%2~,%~) (`rprompt-git-current-branch`)%k '
 
 # ALIAS
-alias w="cd home/workspace"
+alias w="cd && cd ../home/workspace"
 alias h="history 100"
+alias c="clear"
 
 # Git
 alias gs="git status"
