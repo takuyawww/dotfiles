@@ -7,6 +7,7 @@ echo "zsh"
 echo "====================="
 apt install zsh sudo && chsh -s /bin/zsh root && chsh && su - root
 echo $SHELL
+apt install language-pack-ja
 
 echo "====================="
 echo "git install"

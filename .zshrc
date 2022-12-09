@@ -1,5 +1,6 @@
 # LANG
 export LANG=ja_JP.UTF-8
+export LC_ALL=ja_JP.UTF-8
 
 # https://qiita.com/koki0527/items/ca734df6fa86a8dbd241
 function rprompt-git-current-branch {
