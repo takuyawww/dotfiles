@@ -1,15 +1,13 @@
 #!/bin/sh
 
-apt update
-
 echo "====================="
 echo "zsh"
 echo "====================="
-apt install zsh sudo && chsh -s /bin/zsh root && chsh && su - root
+apt install zsh sudo && chsh -s /bin/zsh root && chsh && sudo su - root
 echo $SHELL
 
 echo "====================="
-echo "package"
+echo "basic"
 echo "====================="
 apt install language-pack-ja jq
 
@@ -17,16 +15,12 @@ echo "====================="
 echo "git install"
 echo "====================="
 apt install git && git --version && git config --global user.name takuyawww && git config --global user.email wakataku.11010809@gmail.com
-
-echo "====================="
-echo "git setup"
-echo "====================="
 ls -al ~/.ssh
 ssh-keygen -t ed25519 -C "wakataku.11010809@gmail.com"
 ls -al ~/.ssh
 eval "$(ssh-agent -s)"
 cat ~/.ssh/id_ed25519.pub
-echo "please setting GitHub GUI (to https://github.com/settings/keys)"
+echo "setting to github(https://github.com/settings/keys)"
 read Wait
 ssh -T git@github.com
 
@@ -36,10 +30,18 @@ echo "====================="
 cd ../ && mkdir home/workspace && cd home/workspace
 git clone git@github.com:takuyawww/dotfiles.git
 ./dotfiles/linked.sh
-git clone git@github.com:takuyawww/zonotech.git
-apt install vim
+
+cd /
+apt install vim nvim
+# vim
 # https://uchiharu-memo.hatenablog.com/entry/2017/05/30/011316
-cd && curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh && chmod u+x install.sh && ./install.sh && rm install.sh
+# cd && curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh && chmod u+x install.sh && ./install.sh && rm install.sh
+
+# neovim
+# https://gakogako.com/neovim-install/
+# https://qiita.com/tamago3keran/items/cdfd66b627b3686846d2
+# mkdir -p ~/.config/nvim
+# touch ~/.config/nvim/init.vim
 
 echo "====================="
 echo "ruby"
@@ -54,7 +56,6 @@ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
 echo 'eval "$(~/.rbenv/bin/rbenv init -)"' >> ~/.zshrc
 
 source ~/.zshrc
-source ~/.vimrc
 
 which rbenv
 rbenv install 3.1.2
@@ -81,7 +82,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 source ~/.zshrc
-source ~/.vimrc
 
 nvm install v18.12.1
 nvm install v16.18.1
@@ -92,4 +92,6 @@ node -v
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 export PATH="$PATH:/opt/yarn-[version]/bin"
-apt update && sudo apt install yarn
+apt install yarn
+
+apt update
