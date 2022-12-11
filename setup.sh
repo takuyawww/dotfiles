@@ -9,7 +9,7 @@ echo $SHELL
 echo "====================="
 echo "basic"
 echo "====================="
-apt install language-pack-ja jq
+apt install language-pack-ja jq tree
 
 echo "====================="
 echo "git install"
