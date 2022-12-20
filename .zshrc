@@ -1,5 +1,5 @@
 # environment
-export LANG=ja_JP.UTF-8
+# export LANG=ja_JP.UTF-8
 
 # prompt
 function git-prompt {
@@ -11,6 +11,7 @@ function git-prompt {
   branch_name=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
 
   st=`git status 2> /dev/null`
+
   if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
     branch_status=""
   elif [[ -n `echo "$st" | grep "^Untracked files"` ]]; then
