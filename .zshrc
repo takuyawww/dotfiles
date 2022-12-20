@@ -17,7 +17,7 @@ function git-prompt {
   elif [[ -n `echo "$st" | grep "^Untracked files"` ]]; then
     branch_status="*"
   elif [[ -n `echo "$st" | grep "^Changes not staged for commit"` ]]; then
-    branch_status="⚡️"
+    branch_status="!"
   elif [[ -n `echo "$st" | grep "^Changes to be committed"` ]]; then
     branch_status="+"
   else
