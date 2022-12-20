@@ -29,7 +29,7 @@ source ~/.zshrc
 nvm install v18.12.1
 node -v
 
-apt update
+sudo apt update
 sudo curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 export PATH="$PATH:/opt/yarn-[version]/bin"

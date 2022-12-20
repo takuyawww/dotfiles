@@ -34,7 +34,7 @@ PROMPT=$'%{\e[30;48;5;063m%}%{\e[38;5;255m%}%D %* [%n] %(5~,%-1~/.../%2~,%~) (`g
 # alias
 alias -g T="tail"
 alias -g L="| less"
-alias w="cd && cd ../home/workspace"
+alias h="cd ~"
 alias h="history"
 alias c="clear"
 alias t="time"
