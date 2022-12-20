@@ -1,15 +1,15 @@
-# LANG
+# environment
 export LANG=ja_JP.UTF-8
-export LC_ALL=ja_JP.UTF-8
 
-# https://qiita.com/koki0527/items/ca734df6fa86a8dbd241
-function rprompt-git-current-branch {
+# prompt
+function git-prompt {
   local branch_name st branch_status
 
   if [ ! -e  ".git" ]; then
     return
   fi
   branch_name=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
+
   st=`git status 2> /dev/null`
   if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
     branch_status=""
@@ -19,9 +19,6 @@ function rprompt-git-current-branch {
     branch_status="*"
   elif [[ -n `echo "$st" | grep "^Changes to be committed"` ]]; then
     branch_status="+"
-  elif [[ -n `echo "$st" | grep "^rebase in progress"` ]]; then
-    echo "!!"
-    return
   else
     branch_status=""
   fi
@@ -30,15 +27,17 @@ function rprompt-git-current-branch {
 
 setopt prompt_subst
 
-# PROMPT
-PROMPT='%K{blue}%* [%n] %(5~,%-1~/.../%2~,%~) (`rprompt-git-current-branch`)%k '
+# for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done;echo
+PROMPT=$'%{\e[30;48;5;063m%}%{\e[38;5;255m%}%D %* [%n] %(5~,%-1~/.../%2~,%~) (`git-prompt`)%{\e[0m%} $ '
 
-# ALIAS
+# alias
+alias -g T="tail"
+alias -g L="| less"
 alias w="cd && cd ../home/workspace"
 alias h="history"
 alias c="clear"
+alias t="time"
 
-# Git
 alias gs="git status"
 alias ga="git add ."
 alias gb="git branch"
@@ -52,9 +51,14 @@ alias gstl="git stash list"
 alias gsta="git stash apply"
 alias gstd="git stash drop"
 
+alias d="docker"
+alias d-c="docker container"
+alias d-i="docker image"
+alias dc="docker-compose"
+
 # rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(~/.rbenv/bin/rbenv init -)"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(~/.rbenv/bin/rbenv init -)"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
