@@ -1,5 +1,5 @@
 # environment
-# export LANG=ja_JP.UTF-8
+export LANG=ja_JP.UTF-8
 
 # prompt
 function git-prompt {
@@ -15,9 +15,9 @@ function git-prompt {
   if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
     branch_status=""
   elif [[ -n `echo "$st" | grep "^Untracked files"` ]]; then
-    branch_status="!"
-  elif [[ -n `echo "$st" | grep "^Changes not staged for commit"` ]]; then
     branch_status="*"
+  elif [[ -n `echo "$st" | grep "^Changes not staged for commit"` ]]; then
+    branch_status="⚡️"
   elif [[ -n `echo "$st" | grep "^Changes to be committed"` ]]; then
     branch_status="+"
   else
