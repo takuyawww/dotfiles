@@ -32,12 +32,14 @@ setopt prompt_subst
 PROMPT=$'%{\e[30;48;5;063m%}%{\e[38;5;255m%}%D %* [%n] %(5~,%-1~/.../%2~,%~) (`git-prompt`)%{\e[0m%} $ '
 
 # alias
-alias -g T="tail"
 alias -g L="| less"
-alias h="cd ~"
+alias d="cd ~"
 alias h="history"
 alias c="clear"
 alias t="time"
+alias n="nvim"
+alias e="export"
+alias s="source"
 
 alias gs="git status"
 alias ga="git add ."
@@ -52,10 +54,9 @@ alias gstl="git stash list"
 alias gsta="git stash apply"
 alias gstd="git stash drop"
 
-alias d="docker"
+alias dc="docker"
 alias d-c="docker container"
 alias d-i="docker image"
-alias dc="docker-compose"
 
 # rbenv
 # export PATH="$HOME/.rbenv/bin:$PATH"

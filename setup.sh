@@ -1,7 +1,17 @@
 # docker container run -it --rm --name ubuntu -p 3000:3000 ubuntu:latest bin/bash
+# docker container exec -it ubuntu zsh
 
 echo "-----------------------------------------"
-apt update && apt install zsh sudo jq tree wget curl vim gnupg2
+apt update && apt install zsh sudo jq tree wget curl neovim  gnupg2
+
+# neovim
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x nvim.appimage
+./nvim.appimage --appimage-extract
+./squashfs-root/AppRun --version
+sudo mv squashfs-root /
+sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+which nvim
 
 useradd dev -s /bin/zsh -m -d /home/dev && usermod -G sudo dev && passwd dev && su dev
 
@@ -17,6 +27,8 @@ ssh -T git@github.com
 
 echo "-----------------------------------------"
 git clone git@github.com:takuyawww/dotfiles.git
+mkdir ~/.config
+git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 cd dotfiles && ./linked.sh && source ~/.zshrc
 git config --global user.name takuyawww && git config --global user.email wakataku.11010809@gmail.com
 
