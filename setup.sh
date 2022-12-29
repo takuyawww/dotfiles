@@ -2,7 +2,7 @@
 # docker container exec -it ubuntu zsh
 
 echo "-----------------------------------------"
-apt update && apt install zsh sudo jq tree wget curl neovim  gnupg2
+apt update && apt install zsh sudo jq tree wget curl neovim  gnupg2 ripgrep
 
 # neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
