@@ -33,6 +33,27 @@ require'packer'.startup(function()
 
   -- https://github.com/cohama/lexima.vim
   -- https://github.com/Yggdroot/indentLine
+  -- https://github.com/lewis6991/gitsigns.nvim
+  -- https://github.com/windwp/nvim-autopairs
   use 'cohama/lexima.vim'
   use 'Yggdroot/indentLine'
+  use 'lewis6991/gitsigns.nvim'
+  use {
+ 	  "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
+
+  -- https://github.com/neovim/nvim-lspconfig
+  use 'neovim/nvim-lspconfig'
+
+  -- https://github.com/onsails/lspkind.nvim
+  -- https://github.com/L3MON4D3/LuaSnip
+  -- https://github.com/hrsh7th/cmp-nvim-lsp
+  -- https://github.com/hrsh7th/cmp-buffer
+  -- https://github.com/hrsh7th/nvim-cmp
+  use 'onsails/lspkind.nvim'
+  use 'L3MON4D3/LuaSnip'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/nvim-cmp'
 end)
