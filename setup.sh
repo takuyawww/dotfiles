@@ -2,7 +2,7 @@
 # docker container exec -it ubuntu zsh
 
 echo "-----------------------------------------"
-apt update && apt install zsh sudo jq tree wget curl neovim  gnupg2 ripgrep
+apt update && apt install zsh sudo jq tree wget curl neovim  gnupg2 ripgrep unzip fontconfig
 
 # neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
@@ -12,6 +12,8 @@ chmod u+x nvim.appimage
 sudo mv squashfs-root /
 sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
 which nvim
+# Font
+# cd ./Library/Fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
 
 useradd dev -s /bin/zsh -m -d /home/dev && usermod -G sudo dev && passwd dev && su dev
 
