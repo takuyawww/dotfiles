@@ -1,8 +1,10 @@
-# docker container run -it --rm --name ubuntu -p 3000:3000 ubuntu:latest bin/bash
+# Font (MacOS)
+# cd ./Library/Fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
+# docker container run -it --rm --name ubuntu -p 3000:3000 -p 5000:5000 ubuntu:latest bin/bash
 # docker container exec -it ubuntu zsh
 
 echo "-----------------------------------------"
-apt update && apt install zsh sudo jq tree wget curl neovim  gnupg2 ripgrep unzip fontconfig
+apt update && apt install zsh sudo jq tree wget curl neovim gnupg2 ripgrep
 
 # neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
@@ -12,8 +14,6 @@ chmod u+x nvim.appimage
 sudo mv squashfs-root /
 sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
 which nvim
-# Font
-# cd ./Library/Fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
 
 useradd dev -s /bin/zsh -m -d /home/dev && usermod -G sudo dev && passwd dev && su dev
 
@@ -50,3 +50,6 @@ export PATH="$PATH:/opt/yarn-[version]/bin"
 sudo apt install yarn
 source ~/.zshrc
 yarn -v
+
+# lsp
+cd ~ && yarn global add typescript-language-server typescript && export PATH="$PATH:/home/dev/.yarn/bin"
