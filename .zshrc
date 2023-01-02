@@ -40,6 +40,7 @@ alias t="time"
 alias n="nvim"
 alias e="export"
 alias s="source"
+alias lg="lazygit"
 
 alias gs="git status"
 alias ga="git add ."
