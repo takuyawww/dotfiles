@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # docker image build --no-cache -t my-ubuntu:latest --progress=plain .
 # docker container run -it --rm --name ubuntu -p 3000:3000 -p 5000:5000 -p 8080:8080 my-ubuntu zsh
@@ -17,9 +17,10 @@ mkdir ~/.config
 git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 cd workspace && git clone git@github.com:takuyawww/dotfiles.git && cd dotfiles
-
-./linked.sh && source ~/.zshrc
+./linked.sh && cd ~ &&source ~/.zshrc
 
 nvm install v18.12.1
 
 yarn global add typescript-language-server typescript && export PATH="$PATH:/home/dev/.yarn/bin"
+
+zsh

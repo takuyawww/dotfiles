@@ -28,9 +28,9 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 
 RUN useradd dev -s /bin/zsh -m -d /home/dev -U
 
-COPY setup.sh /home/dev/
+COPY bootstrap.sh /home/dev/
 
-RUN chown dev /home/dev/setup.sh && chmod 755 /home/dev/setup.sh
+RUN chown dev /home/dev/bootstrap.sh && chmod 755 /home/dev/bootstrap.sh
 
 USER dev
 
@@ -38,4 +38,4 @@ WORKDIR /home/dev
 
 RUN mkdir workspace
 
-ENTRYPOINT ["./setup.sh"]
+ENTRYPOINT ["./bootstrap.sh"]
