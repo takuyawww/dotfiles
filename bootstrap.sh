@@ -2,6 +2,7 @@
 
 # docker image build --no-cache -t my-ubuntu:latest --progress=plain .
 # docker container run -it --rm --name ubuntu -p 3000:3000 -p 5000:5000 -p 8080:8080 my-ubuntu zsh
+# docker container exec -it ubuntu zsh
 
 mkdir .ssh && ssh-keygen -t ed25519 -C "wakataku.11010809@gmail.com"
 eval "$(ssh-agent -s)"
