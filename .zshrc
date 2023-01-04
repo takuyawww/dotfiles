@@ -29,7 +29,7 @@ function git-prompt {
 setopt prompt_subst
 
 # for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done;echo
-PROMPT=$'%{\e[30;48;5;063m%}%{\e[38;5;255m%}%D %* [%n] %(5~,%-1~/.../%2~,%~) (`git-prompt`)%{\e[0m%} $ '
+PROMPT=$'%{\e[30;48;5;079m%}%{\e[38;5;255m%}%D %* [%n] %(5~,%-1~/.../%2~,%~) (`git-prompt`)%{\e[0m%} $ '
 
 # alias
 alias -g L="| less"

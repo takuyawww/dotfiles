@@ -1,4 +1,4 @@
 #!/bin/sh
 
-ln -sf ~/dotfiles/.config/nvim ~/.config/nvim
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
+ln -sf ~/workspace/dotfiles/.config/nvim ~/.config/nvim
+ln -sf ~/workspace/dotfiles/.zshrc ~/.zshrc
