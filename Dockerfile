@@ -6,6 +6,7 @@ RUN apt -y update && apt -y upgrade
 RUN apt install -y \
       sudo \
       zsh \
+      locales \
       git \
       jq \
       tree \
@@ -26,8 +27,8 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
     apt -y update && apt -y upgrade && apt install -y yarn
 
-RUN useradd dev -s /bin/zsh -m -d /home/dev && \
-    echo "dev:dev" | chpassword
+RUN useradd dev -s /bin/zsh -m -d /home/dev -G sudo && \
+    echo "dev:dev" | chpasswd
 
 COPY setup.sh /home/dev/
 
