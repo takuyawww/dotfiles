@@ -26,10 +26,20 @@ function git-prompt {
   echo "$branch_name${branch_status}"
 }
 
+function prompt-color {
+  username=$(whoami)
+
+  if [[ $username == "wakazonotakuya" ]] then
+    echo "033m"
+  else
+    echo "079m"
+  fi
+}
+
 setopt prompt_subst
 
 # for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done;echo
-PROMPT=$'%{\e[30;48;5;079m%}%{\e[38;5;255m%}%D %* [%n] %(5~,%-1~/.../%2~,%~) (`git-prompt`)%{\e[0m%} $ '
+PROMPT=$'%{\e[30;48;5;`prompt-color`%}%{\e[38;5;255m%}%D %* [%n] %(5~,%-1~/.../%2~,%~) (`git-prompt`)%{\e[0m%} $ '
 
 # alias
 alias -g L="| less"
