@@ -26,11 +26,12 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
     apt -y update && apt -y upgrade && apt install -y yarn
 
-RUN useradd dev -s /bin/zsh -m -d /home/dev -U
+RUN useradd dev -s /bin/zsh -m -d /home/dev && \
+    echo "dev:dev" | chpassword
 
-COPY bootstrap.sh /home/dev/
+COPY setup.sh /home/dev/
 
-RUN chown dev /home/dev/bootstrap.sh && chmod 755 /home/dev/bootstrap.sh
+RUN chown dev /home/dev/setup.sh && chmod 755 /home/dev/setup.sh
 
 USER dev
 
@@ -38,4 +39,4 @@ WORKDIR /home/dev
 
 RUN mkdir workspace
 
-ENTRYPOINT ["./bootstrap.sh"]
+ENTRYPOINT ["./setup.sh"]
