@@ -15,7 +15,6 @@ vim.cmd [[
   set softtabstop=2
   set tabstop=2
   set termguicolors
-  set pumblend=10
 ]]
 
 -- https://github.com/jacoborus/tender.vim
