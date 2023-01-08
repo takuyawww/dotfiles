@@ -16,7 +16,7 @@ RUN apt install -y \
       ripgrep \
       openssl \
       software-properties-common \
-      golang
+      golang-go
 
 RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage && \
     chmod u+x nvim.appimage && \
