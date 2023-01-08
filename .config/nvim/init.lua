@@ -64,6 +64,21 @@ nvim_lsp.tsserver.setup {
   cmd = { "typescript-language-server", "--stdio" }
 }
 
+util = require "lspconfig/util"
+nvim_lsp.gopls.setup {
+  cmd = { "gopls", "serve" },
+  filetypes = { "go", "gomod" },
+  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    },
+  },
+}
+
 -- lspkind
 local status, cmp = pcall(require, "cmp")
 if (not status) then return end

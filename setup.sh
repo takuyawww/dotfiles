@@ -36,4 +36,6 @@ rm lazygit.tar.gz
 sudo sed -i -E 's/# (ja_JP.UTF-8)/\1/' /etc/locale.gen && \
 sudo locale-gen
 
+export PATH="$PATH:$GOPATH/bin"
+
 zsh
