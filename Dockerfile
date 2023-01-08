@@ -41,4 +41,6 @@ WORKDIR /home/dev
 
 RUN mkdir workspace
 
+ENV GOPATH=/home/dev/workspace
+
 ENTRYPOINT ["./setup.sh"]
