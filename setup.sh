@@ -36,6 +36,7 @@ rm lazygit.tar.gz
 sudo sed -i -E 's/# (ja_JP.UTF-8)/\1/' /etc/locale.gen && \
 sudo locale-gen
 
+go install golang.org/x/tools/gopls@latest
 export PATH="$PATH:$GOPATH/bin"
 
 zsh
