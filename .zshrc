@@ -67,7 +67,7 @@ alias gstd="git stash drop"
 
 alias gob="go build"
 alias gor="go run"
-alias gofmt="go fmt"
+alias gof="go fmt"
 alias gog="go get"
 alias goi="go install"
 
