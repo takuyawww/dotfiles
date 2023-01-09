@@ -65,6 +65,12 @@ alias gstl="git stash list"
 alias gsta="git stash apply"
 alias gstd="git stash drop"
 
+alias gob="go build"
+alias gor="go run"
+alias gofmt="go fmt"
+alias gog="go get"
+alias goi="go install"
+
 alias dc="docker"
 alias d-c="docker container"
 alias d-i="docker image"
