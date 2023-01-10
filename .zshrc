@@ -42,7 +42,6 @@ setopt prompt_subst
 PROMPT=$'%{\e[30;48;5;`prompt-color`%}%{\e[38;5;255m%}%D %* [%n] %(5~,%-1~/.../%2~,%~) (`git-prompt`)%{\e[0m%} $ '
 
 # alias
-alias -g L="| less"
 alias d="cd ~"
 alias h="history"
 alias c="clear"
