@@ -30,7 +30,7 @@ function prompt-color {
   username=$(whoami)
 
   if [[ $username == "wakazonotakuya" ]] then
-    echo "033m"
+    echo "032m"
   else
     echo "078m"
   fi
