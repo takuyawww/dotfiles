@@ -52,6 +52,7 @@ alias e="export"
 alias s="source"
 alias lg="lazygit"
 
+# git
 alias gs="git status"
 alias ga="git add ."
 alias gb="git branch"
@@ -65,12 +66,10 @@ alias gstl="git stash list"
 alias gsta="git stash apply"
 alias gstd="git stash drop"
 
-alias gob="go build"
-alias gor="go run"
-alias gof="go fmt"
-alias gog="go get"
-alias goi="go install"
+# go
+alias gofmtall="gofmt -l -s -w ."
 
+# docker
 alias dc="docker"
 alias d-c="docker container"
 alias d-i="docker image"
