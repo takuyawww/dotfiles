@@ -70,6 +70,7 @@ alias gofmtall="gofmt -l -s -w ."
 alias dc="docker"
 alias d-c="docker container"
 alias d-i="docker image"
+alias login="docker container exec -it ubuntu zsh"
 
 # rbenv
 # export PATH="$HOME/.rbenv/bin:$PATH"
