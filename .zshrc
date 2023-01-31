@@ -28,6 +28,8 @@ function prompt-color {
 
   if [[ $username == "wakazonotakuya" ]] then
     echo "032m"
+  elif [[ $username == "takuyawakazono" ]] then
+    echo "032m"
   else
     echo "078m"
   fi
