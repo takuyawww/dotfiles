@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-EXPOSE 80 3000 5000
+EXPOSE 80 3000 5000 8080
 
 RUN apt -y update && apt -y upgrade
 RUN apt install -y \
@@ -19,6 +19,7 @@ RUN apt install -y \
       lsof \
       golang-go
 
+# TODO M1MacでNeoVimがインストールできないため修正
 RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage && \
     chmod u+x nvim.appimage && \
     ./nvim.appimage --appimage-extract && \
