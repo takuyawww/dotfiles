@@ -66,7 +66,7 @@ alias gsta="git stash apply"
 alias gstd="git stash drop"
 
 # go
-alias gofmtall="gofmt -l -s -w ."
+alias gofa="gofmt -l -s -w ."
 
 # docker
 alias dc="docker"
