@@ -29,7 +29,7 @@ function prompt-color {
   if [[ $username == "wakazonotakuya" ]] then
     echo "032m"
   elif [[ $username == "takuyawakazono" ]] then
-    echo "032m"
+    echo "079m"
   else
     echo "078m"
   fi
@@ -67,6 +67,9 @@ alias gstd="git stash drop"
 
 # go
 alias gofa="gofmt -l -s -w ."
+
+# homebrew
+export PATH="$PATH:/opt/homebrew/bin"
 
 # docker
 alias dc="docker"
