@@ -76,7 +76,7 @@ export PATH="$PATH:/opt/homebrew/bin"
 # alias d-c="docker container"
 # alias d-i="docker image"
 # alias login="docker container exec -it ubuntu zsh"
-export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
 
 # rbenv
 # export PATH="$HOME/.rbenv/bin:$PATH"
