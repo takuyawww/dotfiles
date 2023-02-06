@@ -72,10 +72,11 @@ alias gofa="gofmt -l -s -w ."
 export PATH="$PATH:/opt/homebrew/bin"
 
 # docker
-alias dc="docker"
-alias d-c="docker container"
-alias d-i="docker image"
-alias login="docker container exec -it ubuntu zsh"
+# alias dc="docker"
+# alias d-c="docker container"
+# alias d-i="docker image"
+# alias login="docker container exec -it ubuntu zsh"
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 
 # rbenv
 # export PATH="$HOME/.rbenv/bin:$PATH"
