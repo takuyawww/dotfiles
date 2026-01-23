@@ -1,5 +1,6 @@
 # environment
 export LANG=ja_JP.UTF-8
+export GITHUB_TOKEN=$(gh auth token)
 
 # prompt
 function git-prompt {
@@ -27,29 +28,22 @@ function prompt-color {
   username=$(whoami)
 
   if [[ $username == "wakazonotakuya" ]] then
-    echo "032m"
+    echo "039m"
   elif [[ $username == "takuyawakazono" ]] then
-    echo "079m"
+    echo "039m"
   else
-    echo "078m"
+    echo "039m"
   fi
 }
 
 setopt prompt_subst
 
 # for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done;echo
-PROMPT=$'%{\e[30;48;5;`prompt-color`%}%{\e[38;5;255m%}%D %* [%n] %(5~,%-1~/.../%2~,%~) (`git-prompt`)%{\e[0m%} $ '
+PROMPT=$'%{\e[039;48;5;`prompt-color`%}%{\e[38;5;255m%}%D %* [%n] %(5~,%-1~/.../%2~,%~) (`git-prompt`)%{\e[0m%} $ '
 
 # alias
-alias -g L="| less"
-alias d="cd ~"
-alias h="history"
+alias h="history 100"
 alias c="clear"
-alias t="time"
-alias n="nvim"
-alias e="export"
-alias s="source"
-alias lg="lazygit"
 
 # git
 alias gs="git status"
@@ -58,38 +52,45 @@ alias gb="git branch"
 alias gd="git diff"
 alias gcm="git commit -v"
 alias gc="git checkout"
+alias gcd="git checkout develop"
+alias gcb="git checkout -b"
 alias gp="git push origin HEAD"
-alias gpu="git pull oriin"
 alias gstu="git stash -u"
 alias gstl="git stash list"
 alias gsta="git stash apply"
 alias gstd="git stash drop"
+alias gpua="zsh /Users/takuyawakazono/workspace/git-pull-and-fetch.sh"
+alias gpud="git pull origin develop && git fetch"
+alias gpum="git pull origin master && git fetch"
+alias gmd="git merge develop"
+alias gmm="git merge master"
+alias gbd="git branch | grep -v 'main\|master\|develop\|*' | xargs -r git branch -D"
+
+# git worktree
+alias gwtl="git worktree list"
+alias gwta="git worktree add -b"
+alias gwtr="git worktree remove"
+alias gwtp="git worktree prune"
+
+# difit(https://github.com/yoshiko-pg/difit)
+alias dif="npx difit --port 4000"
+
+# utility
+alias fmtdate="date '+%Y%m%d%H%M%S'"
 
 # go
-alias gofa="gofmt -l -s -w ."
+alias gm="go mod tidy && go mod vendor"
 
 # homebrew
 export PATH="$PATH:/opt/homebrew/bin"
 
 # docker
-# alias dc="docker"
-# alias d-c="docker container"
-# alias d-i="docker image"
-# alias login="docker container exec -it ubuntu zsh"
 export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
 
-# rbenv
-# export PATH="$HOME/.rbenv/bin:$PATH"
-# eval "$(~/.rbenv/bin/rbenv init -)"
+# claude
+export PATH=~/.npm-global/bin:$PATH
 
-# nvm
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+alias cl="claude"
 
-# yarn
-export PATH="$PATH:/opt/yarn-[version]/bin"
-
-# volta
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+# nvim
+alias n="nvim"
