@@ -223,6 +223,24 @@ require("lazy").setup({
     end,
   },
 
+  -- インデントガイド表示
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    config = function()
+      require("ibl").setup({
+        indent = {
+          char = "│",  -- インデントの縦線文字
+        },
+        scope = {
+          enabled = true,  -- 現在のスコープをハイライト
+          show_start = true,
+          show_end = false,
+        },
+      })
+    end,
+  },
+
   -- 自動フォーマット (conform.nvim)
   {
     "stevearc/conform.nvim",
@@ -272,6 +290,59 @@ require("lazy").setup({
     config = function()
       require("render-markdown").setup({})
     end,
+  },
+
+  -- 高速ジャンプ
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash jump" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+    },
+    opts = {},
+  },
+
+  -- ターミナル管理
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = function()
+      require("toggleterm").setup({
+        open_mapping = [[<C-\>]],
+        direction = "float",  -- float / horizontal / vertical
+        float_opts = {
+          border = "curved",
+        },
+      })
+    end,
+  },
+
+  -- エラー・警告一覧
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = "Trouble",
+    keys = {
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
+      { "<leader>xl", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
+      { "<leader>xq", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
+    },
+    opts = {},
+  },
+
+  -- Git diff表示
+  {
+    "sindrets/diffview.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    keys = {
+      { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Git diff" },
+      { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "File history" },
+      { "<leader>gH", "<cmd>DiffviewFileHistory<cr>", desc = "Branch history" },
+    },
+    opts = {},
   },
 
 })
