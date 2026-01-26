@@ -297,15 +297,56 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
--- 各言語サーバーの設定と有効化
+-- 各言語サーバーの設定と有効化 (Neovim 0.11+ API)
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local servers = { "gopls", "pyright", "rust_analyzer", "ts_ls" }
-for _, server in ipairs(servers) do
-  vim.lsp.config(server, {
-    capabilities = capabilities,
-  })
-  vim.lsp.enable(server)
-end
+local mason_bin = vim.fn.stdpath("data") .. "/mason/bin/"
+
+-- 各サーバーの設定
+vim.lsp.config("gopls", {
+  cmd = { mason_bin .. "gopls" },
+  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  root_markers = { "go.work", "go.mod", ".git" },
+  capabilities = capabilities,
+})
+
+vim.lsp.config("pyright", {
+  cmd = { mason_bin .. "pyright-langserver", "--stdio" },
+  filetypes = { "python" },
+  root_dir = function(bufnr, on_dir)
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    local markers = { "pyrightconfig.json", "pyproject.toml", "setup.py", "requirements.txt" }
+    local root = vim.fs.root(fname, markers)
+    -- マーカーが見つからない場合はファイルのディレクトリを使用
+    on_dir(root or vim.fn.fnamemodify(fname, ":h"))
+  end,
+  capabilities = capabilities,
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = "workspace",
+      },
+    },
+  },
+})
+
+vim.lsp.config("rust_analyzer", {
+  cmd = { mason_bin .. "rust-analyzer" },
+  filetypes = { "rust" },
+  root_markers = { "Cargo.toml", ".git" },
+  capabilities = capabilities,
+})
+
+vim.lsp.config("ts_ls", {
+  cmd = { mason_bin .. "typescript-language-server", "--stdio" },
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  root_markers = { "tsconfig.json", "package.json", ".git" },
+  capabilities = capabilities,
+})
+
+-- サーバーを有効化
+vim.lsp.enable({ "gopls", "pyright", "rust_analyzer", "ts_ls" })
 
 -- キーマップ: スペース + e でファイルツリーを開閉
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree" })
