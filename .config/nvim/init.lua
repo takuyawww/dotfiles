@@ -307,6 +307,12 @@ require("lazy").setup({
   {
     "akinsho/toggleterm.nvim",
     version = "*",
+    keys = {
+      { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" },
+      { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", desc = "Float terminal" },
+      { "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", desc = "Horizontal terminal" },
+      { "<leader>tv", "<cmd>ToggleTerm direction=vertical<cr>", desc = "Vertical terminal" },
+    },
     config = function()
       require("toggleterm").setup({
         open_mapping = [[<C-\>]],
@@ -315,6 +321,14 @@ require("lazy").setup({
           border = "curved",
         },
       })
+      -- ターミナルモードでのキーマップ
+      function _G.set_terminal_keymaps()
+        local opts = { buffer = 0 }
+        vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], opts)  -- Escでノーマルモードへ
+        vim.keymap.set("t", "<C-q>", [[<C-\><C-n>]], opts)  -- Ctrl+qでノーマルモードへ
+        vim.keymap.set("t", "<leader>tt", [[<C-\><C-n><cmd>ToggleTerm<cr>]], opts)  -- Space+ttで閉じる
+      end
+      vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
     end,
   },
 
@@ -343,6 +357,41 @@ require("lazy").setup({
       { "<leader>gH", "<cmd>DiffviewFileHistory<cr>", desc = "Branch history" },
     },
     opts = {},
+  },
+
+  -- snacks.nvim (claudecode.nvimの依存関係)
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {},
+  },
+
+  -- Claude Code integration
+  {
+    "coder/claudecode.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    opts = {
+      -- 送信後にClaudeにフォーカス
+      focus_after_send = true,
+      -- Diff設定
+      diff_opts = {
+        layout = "vertical",           -- 縦分割で差分表示
+        open_in_new_tab = true,        -- 新タブで開く（見やすい）
+        hide_terminal_in_new_tab = true,
+      },
+      -- ターミナル設定
+      terminal = {
+        split_side = "right",          -- 右側に配置
+        split_width_percentage = 0.35, -- 少し広め
+      },
+    },
+    keys = {
+      { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+      { "<leader>as", "<cmd>ClaudeCodeSend<cr>", desc = "Send to Claude", mode = "v" },
+      { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+      { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+    },
   },
 
 })
@@ -438,3 +487,4 @@ vim.opt.number = true         -- 行番号を表示
 vim.opt.relativenumber = true -- 相対行番号
 vim.opt.mouse = "a"           -- マウス操作を有効化
 vim.opt.termguicolors = true  -- True color対応
+vim.opt.clipboard = "unnamedplus"  -- システムクリップボードと連携
