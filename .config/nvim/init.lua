@@ -327,6 +327,11 @@ require("lazy").setup({
         vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], opts)  -- Escでノーマルモードへ
         vim.keymap.set("t", "<C-q>", [[<C-\><C-n>]], opts)  -- Ctrl+qでノーマルモードへ
         vim.keymap.set("t", "<leader>tt", [[<C-\><C-n><cmd>ToggleTerm<cr>]], opts)  -- Space+ttで閉じる
+        -- ターミナルから直接ウィンドウ移動
+        vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]], opts)
+        vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-w>j]], opts)
+        vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
+        vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]], opts)
       end
       vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
     end,
