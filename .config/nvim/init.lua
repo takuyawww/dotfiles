@@ -80,6 +80,8 @@ require("lazy").setup({
           "pyright",        -- Python
           "rust_analyzer",  -- Rust
           "ts_ls",          -- TypeScript/JavaScript
+          "lua_ls",         -- Lua
+          "kotlin_language_server", -- Kotlin
         },
         automatic_installation = true,
       })
@@ -483,8 +485,33 @@ vim.lsp.config("ts_ls", {
   capabilities = capabilities,
 })
 
+vim.lsp.config("lua_ls", {
+  cmd = { mason_bin .. "lua-language-server" },
+  filetypes = { "lua" },
+  root_markers = { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git" },
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = { version = "LuaJIT" },
+      diagnostics = { globals = { "vim" } },  -- Neovim用にvimグローバルを認識
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
+      },
+      telemetry = { enable = false },
+    },
+  },
+})
+
+vim.lsp.config("kotlin_language_server", {
+  cmd = { mason_bin .. "kotlin-language-server" },
+  filetypes = { "kotlin" },
+  root_markers = { "build.gradle", "build.gradle.kts", "settings.gradle", "settings.gradle.kts", "pom.xml", ".git" },
+  capabilities = capabilities,
+})
+
 -- サーバーを有効化
-vim.lsp.enable({ "gopls", "pyright", "rust_analyzer", "ts_ls" })
+vim.lsp.enable({ "gopls", "pyright", "rust_analyzer", "ts_ls", "lua_ls", "kotlin_language_server" })
 
 -- キーマップ: スペース + e でファイルツリーを開閉
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree" })
