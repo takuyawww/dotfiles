@@ -82,6 +82,7 @@ require("lazy").setup({
           "ts_ls",          -- TypeScript/JavaScript
           "lua_ls",         -- Lua
           "kotlin_language_server", -- Kotlin
+          "terraformls",    -- Terraform
         },
         automatic_installation = true,
       })
@@ -510,8 +511,15 @@ vim.lsp.config("kotlin_language_server", {
   capabilities = capabilities,
 })
 
+vim.lsp.config("terraformls", {
+  cmd = { mason_bin .. "terraform-ls", "serve" },
+  filetypes = { "terraform", "terraform-vars" },
+  root_markers = { ".terraform", ".git" },
+  capabilities = capabilities,
+})
+
 -- サーバーを有効化
-vim.lsp.enable({ "gopls", "pyright", "rust_analyzer", "ts_ls", "lua_ls", "kotlin_language_server" })
+vim.lsp.enable({ "gopls", "pyright", "rust_analyzer", "ts_ls", "lua_ls", "kotlin_language_server", "terraformls" })
 
 -- キーマップ: スペース + e でファイルツリーを開閉
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree" })
@@ -533,3 +541,23 @@ vim.opt.relativenumber = true -- 相対行番号
 vim.opt.mouse = "a"           -- マウス操作を有効化
 vim.opt.termguicolors = true  -- True color対応
 vim.opt.clipboard = "unnamedplus"  -- システムクリップボードと連携
+
+-- カーソル停止時に自動でホバー情報を表示
+vim.opt.updatetime = 500  -- カーソル停止後の待機時間（ミリ秒）
+
+local hover_group = vim.api.nvim_create_augroup("LspAutoHover", { clear = true })
+vim.api.nvim_create_autocmd("CursorHold", {
+  group = hover_group,
+  callback = function()
+    -- 既存のfloating windowがあれば何もしない
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      if vim.api.nvim_win_get_config(win).relative ~= "" then
+        return
+      end
+    end
+    -- LSPがアタッチされている場合のみホバー表示
+    if #vim.lsp.get_clients({ bufnr = 0 }) > 0 then
+      vim.lsp.buf.hover()
+    end
+  end
+})

@@ -25,15 +25,7 @@ function git-prompt {
 }
 
 function prompt-color {
-  username=$(whoami)
-
-  if [[ $username == "wakazonotakuya" ]] then
-    echo "039m"
-  elif [[ $username == "takuyawakazono" ]] then
-    echo "039m"
-  else
-    echo "039m"
-  fi
+  echo "039m"
 }
 
 setopt prompt_subst
@@ -66,17 +58,8 @@ alias gmd="git merge develop"
 alias gmm="git merge master"
 alias gbd="git branch | grep -v 'main\|master\|develop\|*' | xargs -r git branch -D"
 
-# git worktree
-alias gwtl="git worktree list"
-alias gwta="git worktree add -b"
-alias gwtr="git worktree remove"
-alias gwtp="git worktree prune"
-
-# difit(https://github.com/yoshiko-pg/difit)
-alias dif="npx difit --port 4000"
-
 # utility
-alias fmtdate="date '+%Y%m%d%H%M%S'"
+alias dt="date '+%Y%m%d%H%M%S'"
 
 # go
 alias gm="go mod tidy && go mod vendor"
