@@ -32,6 +32,7 @@ require("lazy").setup({
         },
         filters = {
           dotfiles = false, -- 隠しファイルも表示
+          git_ignored = false, -- gitignoreされたファイルも表示
         },
       })
     end,
