@@ -34,6 +34,10 @@ require("lazy").setup({
           dotfiles = false, -- 隠しファイルも表示
           git_ignored = false, -- gitignoreされたファイルも表示
         },
+        update_focused_file = {
+          enable = true,      -- ファイル開いたらツリーが追従
+          update_root = false, -- ルートは変更しない
+        },
       })
     end,
   },
