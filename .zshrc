@@ -71,9 +71,10 @@ export PATH="$PATH:/opt/homebrew/bin"
 export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
 
 # claude
-export PATH=~/.npm-global/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
 
 alias cl="claude"
+alias claude-log="~/.claude/scripts/claude-log.sh"
 
 # nvim
 alias n="nvim"
