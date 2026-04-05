@@ -59,6 +59,15 @@ require("lazy").setup({
               ["<C-k>"] = "move_selection_previous",
             },
           },
+          file_ignore_patterns = { "%.git/" },
+        },
+        pickers = {
+          find_files = {
+            hidden = true,
+          },
+          live_grep = {
+            additional_args = { "--hidden" },
+          },
         },
       })
       telescope.load_extension("fzf")
@@ -410,9 +419,20 @@ require("lazy").setup({
       terminal = {
         split_side = "right",          -- 右側に配置
         split_width_percentage = 0.35, -- 少し広め
+        snacks_win_opts = {
+          keys = {
+            claude_hide = {
+              "<C-,>",
+              function(self) self:hide() end,
+              mode = "t",
+              desc = "Hide Claude",
+            },
+          },
+        },
       },
     },
     keys = {
+      { "<C-,>", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude", mode = { "n", "x" } },
       { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
       { "<leader>as", "<cmd>ClaudeCodeSend<cr>", desc = "Send to Claude", mode = "v" },
       { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
@@ -529,8 +549,19 @@ vim.lsp.enable({ "gopls", "pyright", "rust_analyzer", "ts_ls", "lua_ls", "kotlin
 -- キーマップ: スペース + e でファイルツリーを開閉
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree" })
 
+-- キーマップ: タブ操作
+vim.keymap.set("n", "<leader>tn", ":tabnew<CR>", { desc = "New tab" })
+vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", { desc = "Close tab" })
+vim.keymap.set("n", "<leader>tl", ":tabnext<CR>", { desc = "Next tab" })
+vim.keymap.set("n", "<leader>th", ":tabprev<CR>", { desc = "Previous tab" })
+
+-- キーマップ: ターミナルモード脱出 (全ターミナル共通)
+vim.keymap.set("t", "<C-q>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
 -- キーマップ: ウィンドウ間の移動
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "左のウィンドウへ" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "下のウィンドウへ" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "上のウィンドウへ" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "右のウィンドウへ" })
 
 -- キーマップ: Telescope（曖昧検索）

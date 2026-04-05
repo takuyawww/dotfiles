@@ -74,7 +74,6 @@ export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
 export PATH="$HOME/.local/bin:$PATH"
 
 alias cl="claude"
-alias claude-log="~/.claude/scripts/claude-log.sh"
 
 # nvim
 alias n="nvim"
