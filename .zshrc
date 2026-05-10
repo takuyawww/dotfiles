@@ -26,16 +26,17 @@ function git-prompt {
 
 function prompt-color {
   echo "039m"
+  # echo "140m"
+  # for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done;echo
 }
 
 setopt prompt_subst
-
-# for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done;echo
 PROMPT=$'%{\e[039;48;5;`prompt-color`%}%{\e[38;5;255m%}%D %* [%n] %(5~,%-1~/.../%2~,%~) (`git-prompt`)%{\e[0m%} $ '
 
-# alias
+# utility
 alias h="history 100"
 alias c="clear"
+alias dt="date '+%Y%m%d%H%M%S'"
 
 # git
 alias gs="git status"
@@ -58,28 +59,25 @@ alias gmd="git merge develop"
 alias gmm="git merge master"
 alias gbd="git branch | grep -v 'main\|master\|develop\|*' | xargs -r git branch -D"
 
-# utility
-alias dt="date '+%Y%m%d%H%M%S'"
-
-# go
+# golang
 alias gm="go mod tidy && go mod vendor"
 
-# homebrew
+# Kubenetes
+alias k="kubectl"
+alias kg="kubectl get"
+alias kd="kubectl describe"
+alias ka="kubectl apply -f"
+alias kl="kubectl logs"
+
+# Homebrew
 export PATH="$PATH:/opt/homebrew/bin"
 
-# docker
+# Docker
 export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
 
-# claude
+# Claude Code
 export PATH="$HOME/.local/bin:$PATH"
-
 alias cl="claude"
 
-# nvim
+# Neovim
 alias n="nvim"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/usr/local/bin/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/bin/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/usr/local/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/bin/google-cloud-sdk/completion.zsh.inc'; fi
