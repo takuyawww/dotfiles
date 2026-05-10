@@ -81,3 +81,6 @@ alias cl="claude"
 
 # Neovim
 alias n="nvim"
+
+# Raspberry Pi
+alias pi="ssh takuyawww@raspberrypi5.local"
